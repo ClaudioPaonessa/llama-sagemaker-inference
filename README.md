@@ -1,3 +1,8 @@
+# Deploy
+Create and push inference container:
+```
+sh prepare_container.sh <repo-name> <optional-profile> 
+```
 
 # Welcome to your CDK Python project!
 
