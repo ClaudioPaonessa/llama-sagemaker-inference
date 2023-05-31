@@ -8,7 +8,7 @@ sagemaker_runtime = session.client("sagemaker-runtime", region_name="eu-central-
 # The name of the endpoint. The name must be unique within an AWS Region in your AWS account. 
 endpoint_name='app-endpoint'
 
-input = {"text": "Say yes or no!", "token_count": 8}
+input = {"text": "Is 10 bigger than 5?", "token_count": 8}
 
 # After you deploy a model into production using SageMaker hosting 
 # services, your client applications use this API to get inferences 

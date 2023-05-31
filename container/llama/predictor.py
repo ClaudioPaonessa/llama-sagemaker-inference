@@ -1,6 +1,7 @@
 from pathlib import Path
 import random
 import flask
+import json
 from llama_cpp import Llama
 
 prefix = "/opt/ml/"
@@ -33,11 +34,21 @@ class LlamaLLM(object):
         
         model_instance = cls.get_model()
         print(f"Start generation. input: {text}")
+        '''
         output = model_instance(
             "Below is an instruction that describes a task, as well as any previous text you have generated. You must continue where you left off if there is text following Previous Output. Write a response that appropriately completes the request. When you are finished, write [[COMPLETE]].\n\n Instruction: "
             + text
             + " Previous output: "
             + prior_output
+            + " Response:",
+            repeat_penalty=penalty,
+            echo=False,
+            max_tokens=token_count,
+        )
+        '''
+        output = model_instance(
+            " Question"
+            + text
             + " Response:",
             repeat_penalty=penalty,
             echo=False,
@@ -72,4 +83,4 @@ def transformation():
         text=text, prior_output=prior_output, penalty=penalty, token_count=token_count
     )
 
-    return flask.Response(response=result, status=200, mimetype="application/json")
+    return flask.Response(response=json.dumps(result), status=200, mimetype="application/json")

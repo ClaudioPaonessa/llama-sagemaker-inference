@@ -40,7 +40,7 @@ class LlamaSagemakerInferenceStack(Stack):
             container_hostname=image_name,
             image=f"{self.account}.dkr.ecr.{self.region}.amazonaws.com/{image_name}:latest",
             model_data_url=s3_url,
-            #environment={"MODEL_SERVER_WORKERS": 1}
+            environment={"MODEL_SERVER_WORKERS": 2}
         )
 
         return sagemaker.CfnModel(
